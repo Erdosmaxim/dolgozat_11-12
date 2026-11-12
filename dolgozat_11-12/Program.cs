@@ -38,21 +38,12 @@ namespace dolgozat_11_12
             return szamol;
         
         }
-        static int Keresetel(string etel)
+        static int Keresetel(string etelneve)
         {
-            int index = 0;
-            for (int i = 0; i < huto.Length; i++)
-            {
-                if (huto[i] == etel)
-                {
-                    index = i;
-                }
-                else
-                {
-                    index = 0;
-                }
-            }
-            return index;
+
+                int index =Array.IndexOf(huto, etelneve);
+                return index;
+
         }
         static void maganh()
         {
