@@ -62,32 +62,61 @@ namespace dolgozat_11_12
         //2
         static void FeltoltEgyediekkel(int min, int max)
         {
-            int random_szam = rand.Next(min, max);
-            bool bennevan=false;
+            
             for (int i = 0; i < szamok.Length; i++)
             {
-                szamok[i] = random_szam;
-                if (szamok.Contains(random_szam))
-                {
-                    bennevan = true;
-                    szamok[i] = random_szam = rand.Next(min, max);
-                    
-                }
-                else
-                {
-                    bennevan= false;
-                }
-
-
+                int random_szam;
+                bool bennevan = false;
                 
+                do
+                {
+                    random_szam = rand.Next(min, max);
+                   
+                    bennevan = false;
+                    foreach (var item in szamok)
+                    {
+                        if (random_szam == item)
+                        {
+                            bennevan= true;
+                        }
+                    }
+                    
+                } while (bennevan);
+                szamok[i] = random_szam;
+
+
             }
-            for(int i = 0;i < szamok.Length; i++)
+            foreach(var item in szamok)
             {
-                Console.WriteLine(szamok[i]);
+                Console.WriteLine(item);
             }
 
         }
-
+        //static void LeghosszabbNovekvo()
+        //{
+        //    int[] uj = new int[szamok.Length];
+        //    for(int i = 0; i < szamok.Length; i++)
+        //    {
+        //        if (szamok[i] < szamok[])
+        //    }
+        //}
+        static void AtlagAlattiDuplazas()
+        {
+            int sum = 0;
+            for(int i=0;i<szamok.Length;i++)
+            {
+                sum += szamok[i];
+            }
+            int atlag=sum/szamok.Length;
+            for(int i=0; i < szamok.Length; i++)
+            {
+                if(szamok[i] < atlag)
+                {
+                    szamok[i] = szamok[i] * 2;
+                }
+                Console.WriteLine(szamok[i]);
+            }
+        }
 
 
 
@@ -104,6 +133,7 @@ namespace dolgozat_11_12
             Console.WriteLine("Mi legyen a max? ");
             int max = Convert.ToInt32(Console.ReadLine());
             FeltoltEgyediekkel(min, max);
+            AtlagAlattiDuplazas();
 
         }
     }
