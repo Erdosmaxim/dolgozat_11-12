@@ -63,20 +63,26 @@ namespace dolgozat_11_12
         static void FeltoltEgyediekkel(int min, int max)
         {
             int random_szam = rand.Next(min, max);
-            int k = 0;
+            bool bennevan=false;
             for (int i = 0; i < szamok.Length; i++)
             {
                 szamok[i] = random_szam;
-                for (int j = 0; j < szamok.Length; j++)
+                if (szamok.Contains(random_szam))
                 {
-                    if (szamok[j] == szamok[i])
-                    {
-                        random_szam = rand.Next(min, max);
-                        szamok[i] = random_szam;
-                    }
+                    bennevan = true;
+                    szamok[i] = random_szam = rand.Next(min, max);
+                    
+                }
+                else
+                {
+                    bennevan= false;
                 }
 
 
+                
+            }
+            for(int i = 0;i < szamok.Length; i++)
+            {
                 Console.WriteLine(szamok[i]);
             }
 
@@ -88,11 +94,11 @@ namespace dolgozat_11_12
 
         static void Main(string[] args)
         {
-            Console.WriteLine("A hűtőben " + Takarit() + " mennyiségű étel van.");
-            Console.WriteLine("Mit ennél? ");
-            string etelneve = Convert.ToString(Console.ReadLine());
-            Console.WriteLine($"Az ételed itt van:{Keresetel(etelneve)} ");
-            maganh();
+            //Console.WriteLine("A hűtőben " + Takarit() + " mennyiségű étel van.");
+            //Console.WriteLine("Mit ennél? ");
+            //string etelneve = Convert.ToString(Console.ReadLine());
+            //Console.WriteLine($"Az ételed itt van:{Keresetel(etelneve)} ");
+            //maganh();
             Console.WriteLine("Mi legyen a min? ");
             int min = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Mi legyen a max? ");
